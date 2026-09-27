@@ -80,15 +80,15 @@ export const PlaybookModal: React.FC = () => {
         </div>
 
         {/* Search & Category Filter bar */}
-        <div className="p-4 border-b border-slate-200 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-900/40 space-y-3">
+        <div className="p-5 border-b border-slate-100 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-900/40 space-y-3.5">
           <div className="relative">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search scenarios (e.g. CMS collection, API webhook, late assets, rush)..."
-              className="w-full pl-9 pr-4 py-2 bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-xl text-xs sm:text-sm text-slate-900 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+              className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-xs sm:text-sm text-slate-900 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
             />
           </div>
 
@@ -98,10 +98,10 @@ export const PlaybookModal: React.FC = () => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap transition-all ${
+                className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
                   selectedCategory === cat
-                    ? 'bg-indigo-600 text-white shadow-sm'
-                    : 'bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-200 dark:border-slate-800'
+                    ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-950 shadow-sm'
+                    : 'bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-200/80 dark:border-slate-800'
                 }`}
               >
                 {cat}
@@ -111,8 +111,8 @@ export const PlaybookModal: React.FC = () => {
         </div>
 
         {/* Scenarios Grid */}
-        <div className="p-4 sm:p-6 overflow-y-auto space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-5 sm:p-6 overflow-y-auto space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {filteredScenarios.map((sc) => {
               const totalHours =
                 sc.defaultHours.design + sc.defaultHours.dev + sc.defaultHours.pm;
@@ -120,60 +120,60 @@ export const PlaybookModal: React.FC = () => {
               return (
                 <div
                   key={sc.id}
-                  className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all flex flex-col justify-between space-y-3 group"
+                  className="p-5 rounded-2xl bg-white dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-sm transition-all flex flex-col justify-between space-y-4 group"
                 >
-                  <div className="space-y-2">
+                  <div className="space-y-2.5">
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="w-5 h-5 rounded bg-slate-200 dark:bg-slate-800 font-mono text-[10px] font-bold text-slate-700 dark:text-slate-300 flex items-center justify-center">
+                        <span className="w-5 h-5 rounded-md bg-slate-100 dark:bg-slate-800 font-mono text-[10px] font-bold text-slate-600 dark:text-slate-400 flex items-center justify-center">
                           {sc.number}
                         </span>
-                        <span className="text-[11px] font-semibold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider">
+                        <span className="text-[11px] font-medium text-slate-400 uppercase tracking-wider">
                           {sc.category}
                         </span>
                       </div>
-                      <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full uppercase border ${
+                      <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full uppercase ${
                         sc.recommendedRoute === 'addition'
-                          ? 'bg-emerald-100 dark:bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border-emerald-300 dark:border-emerald-500/20'
+                          ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400'
                           : sc.recommendedRoute === 'defect'
-                          ? 'bg-purple-100 dark:bg-purple-500/10 text-purple-800 dark:text-purple-300 border-purple-300 dark:border-purple-500/20'
+                          ? 'bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-400'
                           : sc.recommendedRoute === 'ambiguous'
-                          ? 'bg-amber-100 dark:bg-amber-500/10 text-amber-800 dark:text-amber-300 border-amber-300 dark:border-amber-500/20'
-                          : 'bg-blue-100 dark:bg-blue-500/10 text-blue-800 dark:text-blue-300 border-blue-300 dark:border-blue-500/20'
+                          ? 'bg-amber-50 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400'
+                          : 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-400'
                       }`}>
                         {sc.recommendedRoute}
                       </span>
                     </div>
 
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
+                    <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                       {sc.title}
                     </h3>
 
-                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                       {sc.summary}
                     </p>
 
                     {/* Agency advice quote */}
-                    <div className="p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 text-[11px] text-slate-700 dark:text-slate-300 italic leading-relaxed">
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800/60 text-[11px] text-slate-600 dark:text-slate-300 italic leading-relaxed">
                       &quot;{sc.agencyAdvice}&quot;
                     </div>
                   </div>
 
-                  <div className="pt-3 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between">
-                    <div className="flex items-center gap-3 text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                  <div className="pt-3.5 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
+                    <div className="flex items-center gap-3 text-[11px] font-mono text-slate-400">
                       <span className="flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-slate-400" />
+                        <Clock className="w-3 h-3" />
                         ~{totalHours} hrs
                       </span>
                       {sc.defaultOutsideCost > 0 && (
-                        <span>+${sc.defaultOutsideCost} direct</span>
+                        <span>+${sc.defaultOutsideCost}</span>
                       )}
                       <span>+{sc.defaultScheduleDays}d delay</span>
                     </div>
 
                     <button
                       onClick={() => applyPlaybookScenario(sc)}
-                      className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-600 text-indigo-700 hover:text-white dark:bg-indigo-600/30 dark:hover:bg-indigo-600 dark:text-indigo-200 dark:hover:text-white text-xs font-semibold transition-all border border-indigo-200 dark:border-indigo-500/40"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-slate-100 dark:text-slate-950 text-xs font-medium transition-all shadow-none"
                     >
                       <span>Apply</span>
                       <ArrowRight className="w-3.5 h-3.5" />

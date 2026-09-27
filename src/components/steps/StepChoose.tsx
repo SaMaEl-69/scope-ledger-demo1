@@ -43,7 +43,6 @@ export const StepChoose: React.FC = () => {
 
   const handleOfferSelect = (type: OfferType) => {
     if (type === 'quote') {
-      // Default to price floor if fee is currently 0
       const fee = activeChange.quotedFee > 0 ? activeChange.quotedFee : Math.round(priceFloor);
       updateActiveChange({ offerType: type, quotedFee: fee });
     } else {
@@ -74,21 +73,18 @@ Studio Delivery Lead`;
   };
 
   return (
-    <div className="space-y-6">
-      {/* Banner */}
-      <div className="bg-gradient-to-r from-indigo-50/80 via-white to-indigo-50/80 dark:from-slate-900 dark:via-indigo-950/30 dark:to-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm transition-colors">
-        <div className="flex items-center gap-2 mb-1">
-          <span className="w-6 h-6 rounded-md bg-indigo-600/20 dark:bg-indigo-600/30 border border-indigo-500/40 text-indigo-700 dark:text-indigo-400 font-mono text-xs font-bold flex items-center justify-center">
-            C
-          </span>
-          <h2 className="text-lg font-semibold text-slate-900 dark:text-white tracking-tight">
-            Choose an Offer (Commercial Matrix)
-          </h2>
-          <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/20 font-medium">
-            Step 4 of 5
+    <div className="space-y-8 sm:space-y-10">
+      {/* Intro Header */}
+      <div className="space-y-1.5 pb-2 border-b border-slate-200/60 dark:border-slate-800/60">
+        <div className="flex items-center gap-2">
+          <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/40 px-2 py-0.5 rounded-full border border-indigo-200/60 dark:border-indigo-800/40">
+            Step 04 / Choose
           </span>
         </div>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+          Choose an Offer
+        </h1>
+        <p className="text-sm text-slate-500 dark:text-slate-400 max-w-2xl leading-relaxed">
           Select how your studio will respond to this scope change. Evaluate real-time margin trade-offs across Quote, Absorb, Exchange, or Defer.
         </p>
       </div>
@@ -101,19 +97,19 @@ Studio Delivery Lead`;
       />
 
       {/* 4 Interactive Commercial Option Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         {/* Option 1: Quote */}
         <div
           onClick={() => handleOfferSelect('quote')}
-          className={`cursor-pointer rounded-xl p-4 sm:p-5 border transition-all flex flex-col justify-between ${
+          className={`cursor-pointer rounded-2xl p-6 sm:p-7 border transition-all duration-200 flex flex-col justify-between ${
             activeChange.offerType === 'quote'
-              ? 'bg-emerald-50 dark:bg-emerald-950/20 border-emerald-500 ring-1 ring-emerald-500/30 shadow-lg'
-              : 'bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700'
+              ? 'bg-white dark:bg-slate-850 border-emerald-500 shadow-md ring-1 ring-emerald-500/20'
+              : 'bg-white dark:bg-slate-900/70 border-slate-200/80 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-sm'
           }`}
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <div className="p-2 rounded-lg bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-500/20">
+              <div className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400">
                 <DollarSign className="w-4 h-4" />
               </div>
               <input
@@ -121,28 +117,28 @@ Studio Delivery Lead`;
                 name="offerType"
                 checked={activeChange.offerType === 'quote'}
                 onChange={() => handleOfferSelect('quote')}
-                className="accent-emerald-600 dark:accent-emerald-500 w-4 h-4 cursor-pointer"
+                className="accent-emerald-600 w-4 h-4 cursor-pointer"
               />
             </div>
 
-            <h3 className="font-semibold text-sm sm:text-base text-slate-900 dark:text-slate-100 mb-1">
+            <h3 className="font-semibold text-base text-slate-900 dark:text-slate-100 mb-1">
               1. Quote Fee (P)
             </h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
-              Charge an incremental fee covering delivery cost <span className="font-mono text-emerald-700 dark:text-emerald-400 font-semibold">D</span> at your target margin <span className="font-mono text-emerald-700 dark:text-emerald-400 font-semibold">{formatPercent(g)}</span>.
+            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+              Charge an incremental fee covering cost <span className="font-mono text-slate-700 dark:text-slate-200 font-medium">D</span> at target margin <span className="font-mono text-slate-700 dark:text-slate-200 font-medium">{formatPercent(g)}</span>.
             </p>
           </div>
 
-          <div className="pt-3 border-t border-slate-100 dark:border-slate-800/60 space-y-1">
-            <div className="flex justify-between text-[11px]">
-              <span className="text-slate-500 dark:text-slate-400">Suggested Price Floor:</span>
-              <span className="font-mono font-bold text-emerald-700 dark:text-emerald-400">
+          <div className="pt-4 border-t border-slate-100 dark:border-slate-800/60 space-y-1.5 text-xs">
+            <div className="flex justify-between">
+              <span className="text-slate-400">Price Floor:</span>
+              <span className="font-mono font-semibold text-emerald-600 dark:text-emerald-400">
                 {formatCurrency(priceFloor, settings.currency)}
               </span>
             </div>
-            <div className="flex justify-between text-[11px]">
-              <span className="text-slate-500 dark:text-slate-400">Project Margin:</span>
-              <span className="font-mono font-bold text-emerald-600 dark:text-emerald-300">
+            <div className="flex justify-between">
+              <span className="text-slate-400">Target Margin:</span>
+              <span className="font-mono font-semibold text-slate-700 dark:text-slate-200">
                 {formatPercent(newMargin)}
               </span>
             </div>
@@ -152,15 +148,15 @@ Studio Delivery Lead`;
         {/* Option 2: Absorb */}
         <div
           onClick={() => handleOfferSelect('absorb')}
-          className={`cursor-pointer rounded-xl p-4 sm:p-5 border transition-all flex flex-col justify-between ${
+          className={`cursor-pointer rounded-2xl p-6 sm:p-7 border transition-all duration-200 flex flex-col justify-between ${
             activeChange.offerType === 'absorb'
-              ? 'bg-rose-50 dark:bg-rose-950/20 border-rose-500 ring-1 ring-rose-500/30 shadow-lg'
-              : 'bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700'
+              ? 'bg-white dark:bg-slate-850 border-rose-500 shadow-md ring-1 ring-rose-500/20'
+              : 'bg-white dark:bg-slate-900/70 border-slate-200/80 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-sm'
           }`}
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <div className="p-2 rounded-lg bg-rose-100 dark:bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-300 dark:border-rose-500/20">
+              <div className="p-2 rounded-xl bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400">
                 <HeartHandshake className="w-4 h-4" />
               </div>
               <input
@@ -168,28 +164,28 @@ Studio Delivery Lead`;
                 name="offerType"
                 checked={activeChange.offerType === 'absorb'}
                 onChange={() => handleOfferSelect('absorb')}
-                className="accent-rose-600 dark:accent-rose-500 w-4 h-4 cursor-pointer"
+                className="accent-rose-600 w-4 h-4 cursor-pointer"
               />
             </div>
 
-            <h3 className="font-semibold text-sm sm:text-base text-slate-900 dark:text-slate-100 mb-1">
+            <h3 className="font-semibold text-base text-slate-900 dark:text-slate-100 mb-1">
               2. Absorb ($0 Charge)
             </h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
+            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
               Deliver work at $0 as a strategic courtesy waiver or relationship investment.
             </p>
           </div>
 
-          <div className="pt-3 border-t border-slate-100 dark:border-slate-800/60 space-y-1">
-            <div className="flex justify-between text-[11px]">
-              <span className="text-slate-500 dark:text-slate-400">Studio Profit Hit:</span>
-              <span className="font-mono font-bold text-rose-600 dark:text-rose-400">
+          <div className="pt-4 border-t border-slate-100 dark:border-slate-800/60 space-y-1.5 text-xs">
+            <div className="flex justify-between">
+              <span className="text-slate-400">Profit Hit:</span>
+              <span className="font-mono font-semibold text-rose-600 dark:text-rose-400">
                 -{formatCurrency(D, settings.currency)}
               </span>
             </div>
-            <div className="flex justify-between text-[11px]">
-              <span className="text-slate-500 dark:text-slate-400">Margin Drops To:</span>
-              <span className="font-mono font-bold text-rose-600 dark:text-rose-300">
+            <div className="flex justify-between">
+              <span className="text-slate-400">Margin Drops To:</span>
+              <span className="font-mono font-semibold text-rose-600 dark:text-rose-400">
                 {formatPercent(absorbedMargin)}
               </span>
             </div>
@@ -199,15 +195,15 @@ Studio Delivery Lead`;
         {/* Option 3: Exchange */}
         <div
           onClick={() => handleOfferSelect('exchange')}
-          className={`cursor-pointer rounded-xl p-4 sm:p-5 border transition-all flex flex-col justify-between ${
+          className={`cursor-pointer rounded-2xl p-6 sm:p-7 border transition-all duration-200 flex flex-col justify-between ${
             activeChange.offerType === 'exchange'
-              ? 'bg-blue-50 dark:bg-blue-950/20 border-blue-500 ring-1 ring-blue-500/30 shadow-lg'
-              : 'bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700'
+              ? 'bg-white dark:bg-slate-850 border-blue-500 shadow-md ring-1 ring-blue-500/20'
+              : 'bg-white dark:bg-slate-900/70 border-slate-200/80 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-sm'
           }`}
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-300 dark:border-blue-500/20">
+              <div className="p-2 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400">
                 <Repeat className="w-4 h-4" />
               </div>
               <input
@@ -215,26 +211,26 @@ Studio Delivery Lead`;
                 name="offerType"
                 checked={activeChange.offerType === 'exchange'}
                 onChange={() => handleOfferSelect('exchange')}
-                className="accent-blue-600 dark:accent-blue-500 w-4 h-4 cursor-pointer"
+                className="accent-blue-600 w-4 h-4 cursor-pointer"
               />
             </div>
 
-            <h3 className="font-semibold text-sm sm:text-base text-slate-900 dark:text-slate-100 mb-1">
+            <h3 className="font-semibold text-base text-slate-900 dark:text-slate-100 mb-1">
               3. Scope Exchange
             </h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
-              Swap an unfinished feature of equal effort. Balances net cost to $0 with zero deadline slippage.
+            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+              Swap an unfinished feature of equal effort. Balances net cost to $0 with zero deadline slip.
             </p>
           </div>
 
-          <div className="pt-3 border-t border-slate-100 dark:border-slate-800/60 space-y-1">
-            <div className="flex justify-between text-[11px]">
-              <span className="text-slate-500 dark:text-slate-400">Net Client Charge:</span>
-              <span className="font-mono font-bold text-blue-700 dark:text-blue-400">$0.00 Net</span>
+          <div className="pt-4 border-t border-slate-100 dark:border-slate-800/60 space-y-1.5 text-xs">
+            <div className="flex justify-between">
+              <span className="text-slate-400">Net Client Charge:</span>
+              <span className="font-mono font-semibold text-blue-600 dark:text-blue-400">$0.00 Net</span>
             </div>
-            <div className="flex justify-between text-[11px]">
-              <span className="text-slate-500 dark:text-slate-400">Baseline Margin:</span>
-              <span className="font-mono font-bold text-blue-600 dark:text-blue-300">
+            <div className="flex justify-between">
+              <span className="text-slate-400">Baseline Margin:</span>
+              <span className="font-mono font-semibold text-slate-700 dark:text-slate-200">
                 Preserved ({formatPercent(currentBaselineMargin)})
               </span>
             </div>
@@ -244,15 +240,15 @@ Studio Delivery Lead`;
         {/* Option 4: Defer */}
         <div
           onClick={() => handleOfferSelect('defer')}
-          className={`cursor-pointer rounded-xl p-4 sm:p-5 border transition-all flex flex-col justify-between ${
+          className={`cursor-pointer rounded-2xl p-6 sm:p-7 border transition-all duration-200 flex flex-col justify-between ${
             activeChange.offerType === 'defer'
-              ? 'bg-amber-50 dark:bg-amber-950/20 border-amber-500 ring-1 ring-amber-500/30 shadow-lg'
-              : 'bg-white dark:bg-slate-900/60 border-slate-200 dark:border-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700'
+              ? 'bg-white dark:bg-slate-850 border-amber-500 shadow-md ring-1 ring-amber-500/20'
+              : 'bg-white dark:bg-slate-900/70 border-slate-200/80 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-sm'
           }`}
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <div className="p-2 rounded-lg bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-300 dark:border-amber-500/20">
+              <div className="p-2 rounded-xl bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400">
                 <CalendarClock className="w-4 h-4" />
               </div>
               <input
@@ -260,26 +256,26 @@ Studio Delivery Lead`;
                 name="offerType"
                 checked={activeChange.offerType === 'defer'}
                 onChange={() => handleOfferSelect('defer')}
-                className="accent-amber-600 dark:accent-amber-500 w-4 h-4 cursor-pointer"
+                className="accent-amber-600 w-4 h-4 cursor-pointer"
               />
             </div>
 
-            <h3 className="font-semibold text-sm sm:text-base text-slate-900 dark:text-slate-100 mb-1">
+            <h3 className="font-semibold text-base text-slate-900 dark:text-slate-100 mb-1">
               4. Defer to Phase 2
             </h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-3">
-              Protect current launch date by parking the request in post-launch backlog or politely declining.
+            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+              Protect current launch date by parking request in post-launch backlog.
             </p>
           </div>
 
-          <div className="pt-3 border-t border-slate-100 dark:border-slate-800/60 space-y-1">
-            <div className="flex justify-between text-[11px]">
-              <span className="text-slate-500 dark:text-slate-400">Launch Timeline:</span>
-              <span className="font-mono font-bold text-amber-700 dark:text-amber-400">100% Protected</span>
+          <div className="pt-4 border-t border-slate-100 dark:border-slate-800/60 space-y-1.5 text-xs">
+            <div className="flex justify-between">
+              <span className="text-slate-400">Launch Timeline:</span>
+              <span className="font-mono font-semibold text-amber-600 dark:text-amber-400">Protected</span>
             </div>
-            <div className="flex justify-between text-[11px]">
-              <span className="text-slate-500 dark:text-slate-400">Scope Status:</span>
-              <span className="font-mono font-bold text-amber-600 dark:text-amber-300">Post-Launch Backlog</span>
+            <div className="flex justify-between">
+              <span className="text-slate-400">Scope Status:</span>
+              <span className="font-mono font-semibold text-slate-700 dark:text-slate-200">Backlog</span>
             </div>
           </div>
         </div>
@@ -287,93 +283,101 @@ Studio Delivery Lead`;
 
       {/* Selected Offer Deep Dive Settings */}
       {activeChange.offerType === 'quote' && (
-        <div className="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm space-y-5 transition-colors">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800/80">
-            <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-2">
+        <div className="bg-white dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl p-6 sm:p-8 shadow-sm space-y-6 transition-all">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800/60">
+            <div className="flex items-center gap-2">
               <DollarSign className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-              Configure Quoted Change Fee (P)
-            </h3>
-            <span className="text-[11px] font-mono text-emerald-700 dark:text-emerald-400 font-bold">
+              <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider">
+                Configure Quoted Change Fee (P)
+              </h3>
+            </div>
+            <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold">
               Quoted: {formatCurrency(P, settings.currency)}
             </span>
           </div>
 
           {/* Quick Preset Buttons */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {/* Preset 1: Price Floor */}
             <button
               onClick={() => handleQuickFeePreset(priceFloor)}
-              className="p-3 text-left rounded-lg bg-slate-50 dark:bg-slate-950/80 hover:bg-slate-100 dark:hover:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-emerald-500/60 transition-all group"
+              className="p-4 sm:p-5 text-left rounded-xl bg-slate-50/70 dark:bg-slate-950/40 hover:bg-white dark:hover:bg-slate-900 border border-slate-200/60 dark:border-slate-800/60 hover:border-emerald-500/50 transition-all group"
             >
               <div className="flex items-center justify-between text-xs mb-1">
-                <span className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-emerald-700 dark:group-hover:text-emerald-300">
+                <span className="font-medium text-slate-800 dark:text-slate-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
                   Target Price Floor
                 </span>
-                <span className="text-[10px] font-mono text-emerald-700 dark:text-emerald-400 px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-500/10">
+                <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60">
                   {formatPercent(g)} target
                 </span>
               </div>
-              <div className="text-xl font-bold font-mono text-emerald-600 dark:text-emerald-400 tabular-nums">
+              <div className="text-2xl font-bold font-mono text-emerald-600 dark:text-emerald-400 tabular-nums">
                 {formatCurrency(priceFloor, settings.currency)}
               </div>
-              <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1">
-                Formula: D / (1 - g) = covers change at {formatPercent(g)}
+              <p className="text-[11px] text-slate-400 mt-1">
+                Formula: D / (1 - g). Guarantees this change meets your target margin.
               </p>
             </button>
 
             {/* Preset 2: Restorative Fee */}
             <button
-              onClick={() => handleQuickFeePreset(restorativeFee > 0 ? restorativeFee : priceFloor * 1.15)}
-              className="p-3 text-left rounded-lg bg-slate-50 dark:bg-slate-950/80 hover:bg-slate-100 dark:hover:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-indigo-500/60 transition-all group"
+              onClick={() => handleQuickFeePreset(Math.max(priceFloor, restorativeFee))}
+              className="p-4 sm:p-5 text-left rounded-xl bg-slate-50/70 dark:bg-slate-950/40 hover:bg-white dark:hover:bg-slate-900 border border-slate-200/60 dark:border-slate-800/60 hover:border-indigo-500/50 transition-all group"
             >
               <div className="flex items-center justify-between text-xs mb-1">
-                <span className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-indigo-700 dark:group-hover:text-indigo-300">
-                  Whole-Project Restorative
+                <span className="font-medium text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+                  Restorative Fee
                 </span>
-                <span className="text-[10px] font-mono text-indigo-700 dark:text-indigo-400 px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-500/10">
-                  Project Restore
+                <span className="text-[10px] font-mono text-indigo-600 dark:text-indigo-400 px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60">
+                  Whole Project
                 </span>
               </div>
-              <div className="text-xl font-bold font-mono text-indigo-600 dark:text-indigo-400 tabular-nums">
-                {formatCurrency(restorativeFee > 0 ? restorativeFee : priceFloor * 1.15, settings.currency)}
+              <div className="text-2xl font-bold font-mono text-indigo-600 dark:text-indigo-400 tabular-nums">
+                {formatCurrency(Math.max(priceFloor, restorativeFee), settings.currency)}
               </div>
-              <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1">
-                Restores entire project to target margin {formatPercent(g)}
+              <p className="text-[11px] text-slate-400 mt-1">
+                Pulls the entire project back up to your target margin if earlier scope fell behind.
               </p>
             </button>
 
-            {/* Preset 3: Value-Add Rounding */}
+            {/* Preset 3: Breakeven */}
             <button
-              onClick={() => handleQuickFeePreset(Math.ceil(priceFloor / 250) * 250 + 250)}
-              className="p-3 text-left rounded-lg bg-slate-50 dark:bg-slate-950/80 hover:bg-slate-100 dark:hover:bg-slate-950 border border-slate-200 dark:border-slate-800 hover:border-blue-500/60 transition-all group"
+              onClick={() => handleQuickFeePreset(D)}
+              className="p-4 sm:p-5 text-left rounded-xl bg-slate-50/70 dark:bg-slate-950/40 hover:bg-white dark:hover:bg-slate-900 border border-slate-200/60 dark:border-slate-800/60 hover:border-slate-400 transition-all group"
             >
               <div className="flex items-center justify-between text-xs mb-1">
-                <span className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-blue-700 dark:group-hover:text-blue-300">
-                  Value-Add Premium
+                <span className="font-medium text-slate-700 dark:text-slate-300">
+                  At-Cost Break-Even
                 </span>
-                <span className="text-[10px] font-mono text-blue-700 dark:text-blue-400 px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-500/10">
-                  Buffer Added
+                <span className="text-[10px] font-mono text-slate-500 px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800">
+                  0% Profit
                 </span>
               </div>
-              <div className="text-xl font-bold font-mono text-blue-600 dark:text-blue-400 tabular-nums">
-                {formatCurrency(Math.ceil(priceFloor / 250) * 250 + 250, settings.currency)}
+              <div className="text-2xl font-bold font-mono text-slate-700 dark:text-slate-300 tabular-nums">
+                {formatCurrency(D, settings.currency)}
               </div>
-              <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1">
-                Includes risk buffer and clean rounded fee tier
+              <p className="text-[11px] text-slate-400 mt-1">
+                Recovers direct delivery cost with zero agency contribution margin.
               </p>
             </button>
           </div>
 
-          {/* Interactive Fee Slider and Direct Input */}
-          <div className="p-4 rounded-lg bg-slate-50 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 space-y-3">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <label className="text-xs font-semibold text-slate-800 dark:text-slate-300">
-                Fine-Tune Client Quote Fee (P):
-              </label>
+          {/* Interactive Pricing Slider & Direct Input */}
+          <div className="p-6 rounded-xl bg-slate-50/70 dark:bg-slate-950/40 border border-slate-200/60 dark:border-slate-800/60 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <label className="text-xs font-medium text-slate-700 dark:text-slate-300">
+                  Custom Quoted Price (P)
+                </label>
+                <p className="text-xs text-slate-400">
+                  Adjust fee to fine-tune commercial pricing.
+                </p>
+              </div>
+
               <div className="flex items-center gap-2">
-                <span className="text-xs font-mono text-slate-500 dark:text-slate-400">Custom Fee:</span>
+                <span className="text-xs text-slate-400">Amount:</span>
                 <div className="relative">
-                  <span className="absolute left-2.5 top-1.5 text-slate-400 font-mono text-xs">
+                  <span className="absolute left-3 top-2 text-slate-400 font-mono text-sm">
                     {settings.currencySymbol}
                   </span>
                   <input
@@ -382,7 +386,7 @@ Studio Delivery Lead`;
                     step="50"
                     value={activeChange.quotedFee || ''}
                     onChange={(e) => updateActiveChange({ quotedFee: Math.max(0, parseFloat(e.target.value) || 0) })}
-                    className="w-32 pl-6 pr-2 py-1 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded text-sm font-mono font-bold text-emerald-700 dark:text-emerald-400 focus:outline-none focus:border-emerald-500 tabular-nums"
+                    className="w-36 pl-7 pr-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg text-base font-mono font-bold text-emerald-600 dark:text-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 tabular-nums"
                   />
                 </div>
               </div>
@@ -398,36 +402,38 @@ Studio Delivery Lead`;
               className="w-full accent-emerald-600 dark:accent-emerald-500 h-2 bg-slate-200 dark:bg-slate-800 rounded-lg cursor-pointer"
             />
 
-            <div className="flex justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400 pt-1">
-              <span>Cost Break-Even: {formatCurrency(D, settings.currency)}</span>
-              <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Price Floor: {formatCurrency(priceFloor, settings.currency)}</span>
-              <span>Premium Tier: {formatCurrency(priceFloor * 1.5, settings.currency)}</span>
+            <div className="flex justify-between text-[11px] font-mono text-slate-400 pt-1">
+              <span>Break-Even: {formatCurrency(D, settings.currency)}</span>
+              <span className="text-emerald-600 dark:text-emerald-400 font-medium">Price Floor: {formatCurrency(priceFloor, settings.currency)}</span>
+              <span>Premium: {formatCurrency(priceFloor * 1.5, settings.currency)}</span>
             </div>
           </div>
         </div>
       )}
 
       {activeChange.offerType === 'absorb' && (
-        <div className="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm space-y-4 transition-colors">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800/80">
-            <h3 className="text-xs font-semibold text-rose-700 dark:text-rose-300 uppercase tracking-wider flex items-center gap-2">
-              <HeartHandshake className="w-4 h-4 text-rose-600 dark:text-rose-400" />
-              Strategic Absorb Waiver ($0 Client Invoice)
-            </h3>
-            <span className="text-[11px] font-mono text-rose-600 dark:text-rose-400 font-bold">
+        <div className="bg-white dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl p-6 sm:p-8 shadow-sm space-y-5 transition-all">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800/60">
+            <div className="flex items-center gap-2">
+              <HeartHandshake className="w-4 h-4 text-rose-500" />
+              <h3 className="text-xs font-semibold text-rose-700 dark:text-rose-400 uppercase tracking-wider">
+                Strategic Courtesy Scope Waiver ($0 Invoice)
+              </h3>
+            </div>
+            <span className="text-xs font-mono text-rose-600 dark:text-rose-400 font-bold">
               Studio Loss: -{formatCurrency(D, settings.currency)}
             </span>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             <div>
-              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
+              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5">
                 Internal Studio Justification for Absorbing Cost:
               </label>
               <select
                 value={activeChange.absorbRationale || ''}
                 onChange={(e) => updateActiveChange({ absorbRationale: e.target.value })}
-                className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-lg text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:border-rose-500"
+                className="w-full px-3.5 py-2.5 bg-slate-50/70 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-rose-500/20"
               >
                 <option value="">Select strategic rationale...</option>
                 <option value="One-time courtesy goodwill gesture for flagship client">
@@ -448,27 +454,29 @@ Studio Delivery Lead`;
               </select>
             </div>
 
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              <strong>Client-Facing Notice:</strong> The Scope Change Brief will explicitly state: <em>&quot;Studio Courtesy Scope Waiver (Standard Value: {formatCurrency(priceFloor, settings.currency)}) — Delivered at $0.00 as a one-time courtesy.&quot;</em> This prevents the client from assuming your work is free in the future!
+            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed p-4 rounded-xl bg-slate-50 dark:bg-slate-950/50 border border-slate-200/60 dark:border-slate-800/60">
+              <strong>Client-Facing Notice:</strong> The Scope Change Brief will explicitly state: <em>&quot;Studio Courtesy Scope Waiver (Standard Value: {formatCurrency(priceFloor, settings.currency)}) — Delivered at $0.00 as a one-time courtesy.&quot;</em> This anchors the value of your studio time and prevents future unpriced scope expectations.
             </p>
           </div>
         </div>
       )}
 
       {activeChange.offerType === 'exchange' && (
-        <div className="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm space-y-4 transition-colors">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800/80">
-            <h3 className="text-xs font-semibold text-blue-700 dark:text-blue-300 uppercase tracking-wider flex items-center gap-2">
-              <Repeat className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-              Scope Exchange (Dollar-for-Dollar Trade)
-            </h3>
-            <span className="text-[11px] font-mono text-blue-700 dark:text-blue-300 font-bold">
+        <div className="bg-white dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl p-6 sm:p-8 shadow-sm space-y-5 transition-all">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800/60">
+            <div className="flex items-center gap-2">
+              <Repeat className="w-4 h-4 text-blue-500" />
+              <h3 className="text-xs font-semibold text-blue-700 dark:text-blue-400 uppercase tracking-wider">
+                Scope Exchange (Feature-for-Feature Swap)
+              </h3>
+            </div>
+            <span className="text-xs font-mono text-blue-600 dark:text-blue-400 font-bold">
               Balanced Parity: $0 Net Fee
             </span>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
+            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5">
               Agreed Unfinished Scope Item to Drop / Replace:
             </label>
             <input
@@ -476,9 +484,9 @@ Studio Delivery Lead`;
               value={activeChange.exchangeScopeOffered || ''}
               onChange={(e) => updateActiveChange({ exchangeScopeOffered: e.target.value })}
               placeholder="e.g., Retire unbuilt Milestone 3 interactive ROI calculator in exchange for new lead magnet library"
-              className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-lg text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:border-blue-500"
+              className="w-full px-3.5 py-2.5 bg-slate-50/70 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 rounded-xl text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
             />
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+            <p className="text-[11px] text-slate-400 mt-2">
               This swapped scope item will be documented in the Scope Change Brief as formally removed from the contract deliverable inventory.
             </p>
           </div>
@@ -486,41 +494,32 @@ Studio Delivery Lead`;
       )}
 
       {activeChange.offerType === 'defer' && (
-        <div className="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm space-y-4 transition-colors">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800/80">
-            <h3 className="text-xs font-semibold text-amber-700 dark:text-amber-300 uppercase tracking-wider flex items-center gap-2">
-              <CalendarClock className="w-4 h-4 text-amber-600 dark:text-amber-400" />
-              Polite Deferral Protocol (Phase 2 Backlog)
-            </h3>
-            <span className="text-[11px] font-mono text-amber-700 dark:text-amber-400 font-bold">
+        <div className="bg-white dark:bg-slate-900/70 border border-slate-200/80 dark:border-slate-800/80 rounded-2xl p-6 sm:p-8 shadow-sm space-y-5 transition-all">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800/60">
+            <div className="flex items-center gap-2">
+              <CalendarClock className="w-4 h-4 text-amber-500" />
+              <h3 className="text-xs font-semibold text-amber-700 dark:text-amber-400 uppercase tracking-wider">
+                Polite Deferral Protocol (Phase 2 Backlog)
+              </h3>
+            </div>
+            <span className="text-xs font-mono text-amber-600 dark:text-amber-400 font-bold">
               Timeline Shielded
             </span>
           </div>
 
-          <div className="space-y-3">
-            <div>
-              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-                Deferral Destination:
-              </label>
-              <select
-                value={activeChange.deferralTiming || 'Post-Launch Phase 2'}
-                onChange={(e) => updateActiveChange({ deferralTiming: e.target.value })}
-                className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-lg text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:border-amber-500"
-              >
-                <option value="Post-Launch Phase 2">Post-Launch Phase 2 (Recommended)</option>
-                <option value="Monthly Retainer Backlog">Monthly Retainer Backlog</option>
-                <option value="Politely Declined (Out of Studio Focus)">Politely Declined (Out of Studio Focus)</option>
-              </select>
-            </div>
+          <div className="space-y-4">
+            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Copy this respectful, non-confrontational message to decline without friction while keeping the client excited for a post-launch phase:
+            </p>
 
-            <div className="bg-slate-50 dark:bg-slate-950/80 p-4 rounded-lg border border-slate-200 dark:border-slate-800 font-mono text-xs text-slate-800 dark:text-slate-300 whitespace-pre-wrap leading-relaxed relative">
+            <div className="bg-slate-50/70 dark:bg-slate-950/80 p-5 rounded-xl border border-slate-200 dark:border-slate-800 font-mono text-xs text-slate-800 dark:text-slate-300 whitespace-pre-wrap leading-relaxed relative">
               {politeDeferralEmail}
               <button
                 onClick={copyDeferralEmail}
-                className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-sans transition-colors border border-slate-300 dark:border-slate-700"
+                className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-sans transition-colors border border-slate-200 dark:border-slate-700"
               >
                 {copiedDeferral ? <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                <span>{copiedDeferral ? 'Copied' : 'Copy Response'}</span>
+                <span>{copiedDeferral ? 'Copied' : 'Copy Template'}</span>
               </button>
             </div>
           </div>
@@ -528,10 +527,10 @@ Studio Delivery Lead`;
       )}
 
       {/* Navigation Footer */}
-      <div className="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800/80">
+      <div className="flex items-center justify-between pt-6 border-t border-slate-200/60 dark:border-slate-800/60">
         <button
           onClick={prevStep}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs sm:text-sm font-medium transition-colors border border-slate-200 dark:border-slate-800"
+          className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-850 text-slate-700 dark:text-slate-300 text-xs sm:text-sm font-medium transition-colors border border-slate-200/80 dark:border-slate-800"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Assessment (Step A)</span>
@@ -539,9 +538,9 @@ Studio Delivery Lead`;
 
         <button
           onClick={nextStep}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm font-semibold transition-all shadow-md hover:shadow-indigo-500/25 group"
+          className="flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-950 text-xs sm:text-sm font-semibold transition-all shadow-sm hover:shadow group"
         >
-          <span>Evidence & Generate Brief (Step E)</span>
+          <span>Evidence Scope Brief (Step E)</span>
           <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
         </button>
       </div>

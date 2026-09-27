@@ -32,7 +32,7 @@ const WorkspaceApp: React.FC = () => {
       </div>
 
       {/* Main Workspace Body */}
-      <main className="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-8 py-8 sm:py-12">
         {activeStep === 'T' && <StepTrace />}
         {activeStep === 'R' && <StepRoute />}
         {activeStep === 'A' && <StepAssess />}
@@ -41,32 +41,32 @@ const WorkspaceApp: React.FC = () => {
       </main>
 
       {/* Minimal Footer */}
-      <footer className="border-t border-slate-200 dark:border-slate-900 bg-white/80 dark:bg-slate-950/80 px-4 sm:px-6 py-4 text-xs text-slate-600 dark:text-slate-500 print:hidden transition-colors">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+      <footer className="border-t border-slate-200/80 dark:border-slate-800/60 bg-white/60 dark:bg-slate-950/60 px-4 sm:px-8 py-5 text-xs text-slate-500 dark:text-slate-400 print:hidden transition-colors">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div className="flex items-center gap-2">
-            <span className="font-semibold text-slate-700 dark:text-slate-400">ScopeLedger</span>
-            <span>•</span>
-            <span>Margin-Protection Kit for $5k–$25k Webflow & Framer Studios</span>
+            <span className="font-medium text-slate-700 dark:text-slate-300">ScopeLedger</span>
+            <span className="text-slate-300 dark:text-slate-700">•</span>
+            <span>Margin-Protection Kit for Boutique Webflow & Framer Studios</span>
           </div>
 
           <div className="flex items-center gap-4 text-[11px] font-mono">
             <button
               onClick={() => setPlaybookModalOpen(true)}
-              className="hover:text-slate-900 dark:hover:text-slate-300 transition-colors flex items-center gap-1"
+              className="hover:text-slate-900 dark:hover:text-slate-200 transition-colors flex items-center gap-1.5"
             >
-              <span>Agency Playbook</span>
-              <kbd className="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-[10px]">
+              <span>Playbooks</span>
+              <kbd className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[10px]">
                 Cmd+K
               </kbd>
             </button>
 
             <button
               onClick={() => setShortcutsModalOpen(true)}
-              className="hover:text-slate-900 dark:hover:text-slate-300 transition-colors flex items-center gap-1"
+              className="hover:text-slate-900 dark:hover:text-slate-200 transition-colors flex items-center gap-1.5"
             >
               <HelpCircle className="w-3.5 h-3.5" />
-              <span>TRACE Guide</span>
-              <kbd className="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-[10px]">
+              <span>Guide</span>
+              <kbd className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[10px]">
                 ?
               </kbd>
             </button>
