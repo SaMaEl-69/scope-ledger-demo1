@@ -96,7 +96,8 @@ export const MarginGauge: React.FC<MarginGaugeProps> = ({
             cy={center}
             r={radius}
             fill="none"
-            stroke="rgba(51, 65, 85, 0.4)" // slate-700
+            stroke="currentColor"
+            className="text-slate-200 dark:text-slate-700/40"
             strokeWidth={strokeWidth}
             strokeDasharray={`${arcLength} ${circumference}`}
             strokeDashoffset={0}
@@ -111,7 +112,8 @@ export const MarginGauge: React.FC<MarginGaugeProps> = ({
               cy={center}
               r={radius}
               fill="none"
-              stroke="rgba(255, 255, 255, 0.4)"
+              stroke="currentColor"
+              className="text-slate-400/60 dark:text-white/40"
               strokeWidth={strokeWidth + 4}
               strokeDasharray={`3 ${circumference}`}
               strokeDashoffset={-(arcLength * targetNormalized)}
@@ -160,12 +162,12 @@ export const MarginGauge: React.FC<MarginGaugeProps> = ({
 
       {/* Label and Target info */}
       <div className="text-center mt-1">
-        <p className={`font-medium text-slate-300 ${config.labelSize}`}>{label}</p>
+        <p className={`font-semibold text-slate-800 dark:text-slate-200 ${config.labelSize}`}>{label}</p>
         {sublabel ? (
-          <p className="text-[11px] text-slate-500">{sublabel}</p>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400">{sublabel}</p>
         ) : (
-          <p className="text-[11px] text-slate-500 font-mono">
-            Target: <span className="text-slate-300 font-semibold">{formatPercent(targetMargin)}</span>
+          <p className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+            Target: <span className="text-slate-800 dark:text-slate-300 font-semibold">{formatPercent(targetMargin)}</span>
           </p>
         )}
       </div>

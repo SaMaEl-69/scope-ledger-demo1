@@ -51,20 +51,20 @@ export const LicenseModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-150">
-      <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 dark:bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-150">
+      <div className="relative w-full max-w-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] transition-colors">
         {/* Header */}
-        <div className="p-6 border-b border-slate-800 bg-gradient-to-r from-slate-950 via-indigo-950/40 to-slate-950 flex items-start justify-between">
+        <div className="p-6 border-b border-slate-200 dark:border-slate-800 bg-gradient-to-r from-indigo-50/80 via-white to-indigo-50/80 dark:from-slate-950 dark:via-indigo-950/40 dark:to-slate-950 flex items-start justify-between">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <div className="p-1.5 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-500/30">
+              <div className="p-1.5 rounded-lg bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-500/30">
                 <Sparkles className="w-4 h-4" />
               </div>
-              <h2 className="text-lg font-bold text-white tracking-tight">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
                 {license.isLicensed ? 'Commercial License Manager' : 'Activate ScopeLedger License'}
               </h2>
             </div>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-600 dark:text-slate-400">
               {license.isLicensed
                 ? 'Manage active studio workstation activations.'
                 : licenseModalReason || 'Protect boutique margins across unlimited Webflow & Framer projects.'}
@@ -73,7 +73,7 @@ export const LicenseModal: React.FC = () => {
 
           <button
             onClick={closeLicenseModal}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-850 transition-colors"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-800 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-850 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -90,45 +90,45 @@ export const LicenseModal: React.FC = () => {
                   onClick={() => setSelectedTier('individual')}
                   className={`cursor-pointer rounded-xl p-4 border transition-all flex flex-col justify-between ${
                     selectedTier === 'individual'
-                      ? 'bg-indigo-950/30 border-indigo-500 ring-1 ring-indigo-500/30'
-                      : 'bg-slate-950/60 border-slate-800 hover:border-slate-700'
+                      ? 'bg-indigo-50 dark:bg-indigo-950/30 border-indigo-500 ring-1 ring-indigo-500/30'
+                      : 'bg-slate-50 dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
                   }`}
                 >
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="font-semibold text-sm text-slate-200">
+                      <span className="font-semibold text-sm text-slate-900 dark:text-slate-200">
                         Individual Plan
                       </span>
                       <input
                         type="radio"
                         checked={selectedTier === 'individual'}
                         onChange={() => setSelectedTier('individual')}
-                        className="accent-indigo-500"
+                        className="accent-indigo-600 dark:accent-indigo-500"
                       />
                     </div>
 
                     <div className="flex items-baseline gap-1">
-                      <span className="text-2xl font-bold font-mono text-white">
+                      <span className="text-2xl font-bold font-mono text-slate-900 dark:text-white">
                         $49.79
                       </span>
-                      <span className="text-[11px] text-slate-400">one-time</span>
+                      <span className="text-[11px] text-slate-500 dark:text-slate-400">one-time</span>
                     </div>
 
-                    <p className="text-xs text-slate-400 leading-relaxed">
+                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                       For solo freelance web designers & Webflow specialists.
                     </p>
 
-                    <ul className="space-y-1.5 text-xs text-slate-300 pt-2">
+                    <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300 pt-2">
                       <li className="flex items-center gap-2">
-                        <Check className="w-3.5 h-3.5 text-indigo-400 flex-shrink-0" />
+                        <Check className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
                         <span><strong>2 Device Activations</strong> (Desktop + Laptop)</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="w-3.5 h-3.5 text-indigo-400 flex-shrink-0" />
+                        <Check className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
                         <span>Unlimited Custom Projects</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="w-3.5 h-3.5 text-indigo-400 flex-shrink-0" />
+                        <Check className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
                         <span>Unwatermarked PDF Exports</span>
                       </li>
                     </ul>
@@ -140,53 +140,53 @@ export const LicenseModal: React.FC = () => {
                   onClick={() => setSelectedTier('agency')}
                   className={`cursor-pointer rounded-xl p-4 border transition-all flex flex-col justify-between relative ${
                     selectedTier === 'agency'
-                      ? 'bg-emerald-950/30 border-emerald-500 ring-1 ring-emerald-500/30 shadow-lg'
-                      : 'bg-slate-950/60 border-slate-800 hover:border-slate-700'
+                      ? 'bg-emerald-50 dark:bg-emerald-950/30 border-emerald-500 ring-1 ring-emerald-500/30 shadow-lg'
+                      : 'bg-slate-50 dark:bg-slate-950/60 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
                   }`}
                 >
-                  <div className="absolute -top-2.5 right-4 px-2 py-0.5 rounded-full bg-emerald-500 text-slate-950 font-bold text-[10px] uppercase tracking-wider shadow">
+                  <div className="absolute -top-2.5 right-4 px-2 py-0.5 rounded-full bg-emerald-600 text-white font-bold text-[10px] uppercase tracking-wider shadow">
                     Most Popular
                   </div>
 
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="font-semibold text-sm text-slate-200">
+                      <span className="font-semibold text-sm text-slate-900 dark:text-slate-200">
                         Agency Plan
                       </span>
                       <input
                         type="radio"
                         checked={selectedTier === 'agency'}
                         onChange={() => setSelectedTier('agency')}
-                        className="accent-emerald-500"
+                        className="accent-emerald-600 dark:accent-emerald-500"
                       />
                     </div>
 
                     <div className="flex items-baseline gap-1">
-                      <span className="text-2xl font-bold font-mono text-white">
+                      <span className="text-2xl font-bold font-mono text-slate-900 dark:text-white">
                         $69.79
                       </span>
-                      <span className="text-[11px] text-slate-400">one-time</span>
+                      <span className="text-[11px] text-slate-500 dark:text-slate-400">one-time</span>
                     </div>
 
-                    <p className="text-xs text-slate-400 leading-relaxed">
+                    <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                       For boutique web design agencies & delivery leads.
                     </p>
 
-                    <ul className="space-y-1.5 text-xs text-slate-300 pt-2">
+                    <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300 pt-2">
                       <li className="flex items-center gap-2">
-                        <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                        <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                         <span><strong>5 Device Activations</strong> (Team / Lead)</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                        <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                         <span>Studio White-Labeling & Logo</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                        <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                         <span>All 12 Agency Playbooks</span>
                       </li>
                       <li className="flex items-center gap-2">
-                        <Check className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                        <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
                         <span>Lifetime Offline Local Updates</span>
                       </li>
                     </ul>
@@ -195,10 +195,10 @@ export const LicenseModal: React.FC = () => {
               </div>
 
               {/* License Key Input Form */}
-              <form onSubmit={handleActivate} className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 space-y-3">
+              <form onSubmit={handleActivate} className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 space-y-3">
                 <div className="flex items-center justify-between">
-                  <label className="text-xs font-semibold text-slate-200 flex items-center gap-1.5">
-                    <KeyRound className="w-3.5 h-3.5 text-indigo-400" />
+                  <label className="text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+                    <KeyRound className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
                     Enter Gumroad License Key:
                   </label>
                   <span className="text-[11px] text-slate-500">
@@ -215,7 +215,7 @@ export const LicenseModal: React.FC = () => {
                       setErrorMsg('');
                     }}
                     placeholder="e.g. SCOPE-AGENCY-2026-X89"
-                    className="flex-1 px-3 py-2 bg-slate-900 border border-slate-700/80 rounded-lg text-xs sm:text-sm font-mono text-slate-100 placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                    className="flex-1 px-3 py-2 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700/80 rounded-lg text-xs sm:text-sm font-mono text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                   />
                   <button
                     type="submit"
@@ -226,11 +226,11 @@ export const LicenseModal: React.FC = () => {
                 </div>
 
                 {errorMsg && (
-                  <p className="text-xs text-rose-400">{errorMsg}</p>
+                  <p className="text-xs text-rose-500 dark:text-rose-400">{errorMsg}</p>
                 )}
 
                 {/* Instant Evaluation Simulation Buttons */}
-                <div className="pt-2 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs">
+                <div className="pt-2 border-t border-slate-200 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs">
                   <span className="text-[11px] text-slate-500">
                     Quick Evaluation Simulation:
                   </span>
@@ -238,14 +238,14 @@ export const LicenseModal: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => handleSimulateKey('agency')}
-                      className="px-2.5 py-1 rounded bg-emerald-950/50 hover:bg-emerald-900/60 border border-emerald-500/40 text-emerald-300 text-[11px] font-mono transition-colors"
+                      className="px-2.5 py-1 rounded bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/50 dark:hover:bg-emerald-900/60 border border-emerald-300 dark:border-emerald-500/40 text-emerald-800 dark:text-emerald-300 text-[11px] font-mono transition-colors"
                     >
                       Instant Unlock (Agency)
                     </button>
                     <button
                       type="button"
                       onClick={() => handleSimulateKey('individual')}
-                      className="px-2.5 py-1 rounded bg-indigo-950/50 hover:bg-indigo-900/60 border border-indigo-500/40 text-indigo-300 text-[11px] font-mono transition-colors"
+                      className="px-2.5 py-1 rounded bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/50 dark:hover:bg-indigo-900/60 border border-indigo-300 dark:border-indigo-500/40 text-indigo-800 dark:text-indigo-300 text-[11px] font-mono transition-colors"
                     >
                       Instant Unlock (Individual)
                     </button>
@@ -256,33 +256,33 @@ export const LicenseModal: React.FC = () => {
           ) : (
             /* Active License Management View */
             <div className="space-y-4">
-              <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/40 space-y-3">
+              <div className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-300 dark:border-emerald-500/40 space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <ShieldCheck className="w-5 h-5 text-emerald-400" />
-                    <span className="font-bold text-sm text-emerald-300 capitalize">
+                    <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                    <span className="font-bold text-sm text-emerald-800 dark:text-emerald-300 capitalize">
                       {license.tier} Plan Active
                     </span>
                   </div>
-                  <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                  <span className="text-[11px] font-mono text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-300 dark:border-emerald-500/20">
                     Verified Offline
                   </span>
                 </div>
 
-                <div className="text-xs text-slate-300 space-y-1">
-                  <div>License Key: <strong className="font-mono text-slate-100">{license.licenseKey}</strong></div>
-                  <div>Workstation: <span className="font-mono text-slate-400">{license.currentDeviceName}</span></div>
-                  <div>Device Usage: <strong className="text-emerald-400">1 of {license.maxDevices} devices registered</strong></div>
+                <div className="text-xs text-slate-700 dark:text-slate-300 space-y-1">
+                  <div>License Key: <strong className="font-mono text-slate-900 dark:text-slate-100">{license.licenseKey}</strong></div>
+                  <div>Workstation: <span className="font-mono text-slate-500 dark:text-slate-400">{license.currentDeviceName}</span></div>
+                  <div>Device Usage: <strong className="text-emerald-700 dark:text-emerald-400">1 of {license.maxDevices} devices registered</strong></div>
                 </div>
               </div>
 
               {/* Release Device Option */}
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
                 <div>
-                  <h4 className="text-xs font-semibold text-slate-200">
+                  <h4 className="text-xs font-semibold text-slate-800 dark:text-slate-200">
                     Device Management
                   </h4>
-                  <p className="text-[11px] text-slate-400">
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400">
                     Deactivate this workstation to use the license on another machine.
                   </p>
                 </div>
@@ -293,7 +293,7 @@ export const LicenseModal: React.FC = () => {
                       releaseLicense();
                     }
                   }}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-rose-950/60 text-slate-300 hover:text-rose-300 border border-slate-700 text-xs font-medium transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-rose-50 dark:bg-slate-800 dark:hover:bg-rose-950/60 text-slate-700 hover:text-rose-600 dark:text-slate-300 dark:hover:text-rose-300 border border-slate-300 dark:border-slate-700 text-xs font-medium transition-colors"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                   <span>Release This Device</span>

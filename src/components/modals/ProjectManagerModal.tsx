@@ -73,19 +73,19 @@ export const ProjectManagerModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-150">
-      <div className="relative w-full max-w-3xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 dark:bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-150">
+      <div className="relative w-full max-w-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] transition-colors">
         {/* Header */}
-        <div className="p-5 border-b border-slate-800 bg-slate-950/60 flex items-center justify-between">
+        <div className="p-5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-indigo-600/20 text-indigo-400 border border-indigo-500/30">
+            <div className="p-2 rounded-xl bg-indigo-100 dark:bg-indigo-600/20 text-indigo-700 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/30">
               <FolderKanban className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">
+              <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">
                 Studio Projects Manager
               </h2>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 Switch active client accounts or add fixed-fee website projects.
               </p>
             </div>
@@ -96,7 +96,7 @@ export const ProjectManagerModal: React.FC = () => {
               setIsCreating(false);
               setProjectModalOpen(false);
             }}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-850 transition-colors"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-800 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-850 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -108,7 +108,7 @@ export const ProjectManagerModal: React.FC = () => {
             <>
               {/* Project Action Top Bar */}
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Active Projects ({projects.length})
                 </span>
                 <button
@@ -132,33 +132,33 @@ export const ProjectManagerModal: React.FC = () => {
                       key={proj.id}
                       className={`p-4 rounded-xl border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
                         isActive
-                          ? 'bg-indigo-950/30 border-indigo-500/70 shadow-md ring-1 ring-indigo-500/20'
-                          : 'bg-slate-950/70 border-slate-800 hover:border-slate-700'
+                          ? 'bg-indigo-50 dark:bg-indigo-950/30 border-indigo-500/70 shadow-md ring-1 ring-indigo-500/20'
+                          : 'bg-slate-50 dark:bg-slate-950/70 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
                       }`}
                     >
                       <div className="space-y-1 min-w-0">
                         <div className="flex items-center gap-2">
-                          <span className="font-bold text-sm text-slate-100 truncate">
+                          <span className="font-bold text-sm text-slate-900 dark:text-slate-100 truncate">
                             {proj.name}
                           </span>
                           {proj.isSample && (
-                            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-800 dark:text-amber-300 border border-amber-500/20 font-semibold">
                               Demo Sample
                             </span>
                           )}
                           {isActive && (
-                            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                            <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/30 font-semibold">
                               Active
                             </span>
                           )}
                         </div>
 
-                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400">
-                          <span>Client: <strong className="text-slate-300">{proj.clientName}</strong></span>
+                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500 dark:text-slate-400">
+                          <span>Client: <strong className="text-slate-800 dark:text-slate-300">{proj.clientName}</strong></span>
                           <span>•</span>
-                          <span>Fee: <strong className="text-slate-300 font-mono">{formatCurrency(proj.approvedFee, settings.currency)}</strong></span>
+                          <span>Fee: <strong className="text-slate-800 dark:text-slate-300 font-mono">{formatCurrency(proj.approvedFee, settings.currency)}</strong></span>
                           <span>•</span>
-                          <span>Margin: <strong className="text-emerald-400 font-mono">{formatPercent(margin)}</strong></span>
+                          <span>Margin: <strong className="text-emerald-600 dark:text-emerald-400 font-mono font-bold">{formatPercent(margin)}</strong></span>
                           <span>•</span>
                           <span>{proj.changeRequests?.length || 0} Scope Items</span>
                         </div>
@@ -171,7 +171,7 @@ export const ProjectManagerModal: React.FC = () => {
                               switchProject(proj.id);
                               setProjectModalOpen(false);
                             }}
-                            className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium transition-colors"
+                            className="px-3 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-medium transition-colors"
                           >
                             Switch To
                           </button>
@@ -179,7 +179,7 @@ export const ProjectManagerModal: React.FC = () => {
 
                         <button
                           onClick={() => duplicateProject(proj.id)}
-                          className="p-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-800 transition-colors"
+                          className="p-1.5 rounded-lg bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-200 dark:border-slate-800 transition-colors"
                           title="Duplicate project"
                         >
                           <Copy className="w-3.5 h-3.5" />
@@ -192,7 +192,7 @@ export const ProjectManagerModal: React.FC = () => {
                                 deleteProject(proj.id);
                               }
                             }}
-                            className="p-1.5 rounded-lg bg-slate-900 hover:bg-rose-950/60 text-slate-400 hover:text-rose-400 border border-slate-800 transition-colors"
+                            className="p-1.5 rounded-lg bg-white dark:bg-slate-900 hover:bg-rose-50 dark:hover:bg-rose-950/60 text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 border border-slate-200 dark:border-slate-800 transition-colors"
                             title="Delete project"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -207,14 +207,14 @@ export const ProjectManagerModal: React.FC = () => {
           ) : (
             /* Create Project Form */
             <form onSubmit={handleSubmitCreate} className="space-y-4">
-              <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                <h3 className="text-sm font-bold text-white">
+              <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+                <h3 className="text-sm font-bold text-slate-900 dark:text-white">
                   Add New Agency Project Baseline
                 </h3>
                 <button
                   type="button"
                   onClick={() => setIsCreating(false)}
-                  className="text-xs text-slate-400 hover:text-white"
+                  className="text-xs text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white"
                 >
                   Cancel
                 </button>
@@ -222,7 +222,7 @@ export const ProjectManagerModal: React.FC = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Project Name *
                   </label>
                   <input
@@ -231,12 +231,12 @@ export const ProjectManagerModal: React.FC = () => {
                     value={newName}
                     onChange={(e) => setNewName(e.target.value)}
                     placeholder="e.g. Vesper / SaaS Brand Redesign"
-                    className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs sm:text-sm text-slate-200 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-lg text-xs sm:text-sm text-slate-900 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Client Organization *
                   </label>
                   <input
@@ -245,12 +245,12 @@ export const ProjectManagerModal: React.FC = () => {
                     value={newClient}
                     onChange={(e) => setNewClient(e.target.value)}
                     placeholder="e.g. Vesper Technologies, Inc."
-                    className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs sm:text-sm text-slate-200 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-lg text-xs sm:text-sm text-slate-900 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Client Contact Email
                   </label>
                   <input
@@ -258,12 +258,12 @@ export const ProjectManagerModal: React.FC = () => {
                     value={newEmail}
                     onChange={(e) => setNewEmail(e.target.value)}
                     placeholder="e.g. sarah@vesper.io"
-                    className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs sm:text-sm text-slate-200 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-lg text-xs sm:text-sm text-slate-900 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Agreed Fixed Contract Fee ($F) *
                   </label>
                   <input
@@ -273,12 +273,12 @@ export const ProjectManagerModal: React.FC = () => {
                     step="100"
                     value={newFee}
                     onChange={(e) => setNewFee(Number(e.target.value))}
-                    className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs sm:text-sm font-mono text-slate-200 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-lg text-xs sm:text-sm font-mono text-slate-900 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Incurred Delivery Sunk Costs ($A)
                   </label>
                   <input
@@ -287,12 +287,12 @@ export const ProjectManagerModal: React.FC = () => {
                     step="100"
                     value={newIncurred}
                     onChange={(e) => setNewIncurred(Number(e.target.value))}
-                    className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs sm:text-sm font-mono text-slate-200 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-lg text-xs sm:text-sm font-mono text-slate-900 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-medium text-slate-300 mb-1">
+                  <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Estimated Remaining Delivery Cost ($R)
                   </label>
                   <input
@@ -301,16 +301,16 @@ export const ProjectManagerModal: React.FC = () => {
                     step="100"
                     value={newRemaining}
                     onChange={(e) => setNewRemaining(Number(e.target.value))}
-                    className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs sm:text-sm font-mono text-slate-200 focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-lg text-xs sm:text-sm font-mono text-slate-900 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
               </div>
 
-              <div className="pt-3 flex justify-end gap-2 border-t border-slate-800">
+              <div className="pt-3 flex justify-end gap-2 border-t border-slate-200 dark:border-slate-800">
                 <button
                   type="button"
                   onClick={() => setIsCreating(false)}
-                  className="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 text-xs font-medium hover:bg-slate-700"
+                  className="px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-medium transition-colors"
                 >
                   Cancel
                 </button>

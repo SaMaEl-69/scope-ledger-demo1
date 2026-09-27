@@ -110,33 +110,33 @@ ${conditions}
   return (
     <div className="space-y-6">
       {/* Top Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950/30 to-slate-900 border border-slate-800 rounded-xl p-5 shadow-lg">
+      <div className="bg-gradient-to-r from-indigo-50/80 via-white to-indigo-50/80 dark:from-slate-900 dark:via-indigo-950/30 dark:to-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm transition-colors">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-md bg-indigo-600/30 border border-indigo-500/40 text-indigo-400 font-mono text-xs font-bold flex items-center justify-center">
+              <span className="w-6 h-6 rounded-md bg-indigo-600/20 dark:bg-indigo-600/30 border border-indigo-500/40 text-indigo-700 dark:text-indigo-400 font-mono text-xs font-bold flex items-center justify-center">
                 E
               </span>
-              <h2 className="text-lg font-semibold text-white tracking-tight">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-white tracking-tight">
                 Evidence the Decision (Client Deliverable)
               </h2>
-              <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 font-medium">
+              <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-500/20 font-medium">
                 Step 5 of 5
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-400">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
               Generate a polished, client-facing Scope Change Brief. Zero internal labor hours or margin rates leak into this deliverable.
             </p>
           </div>
 
           {/* Zero-Leak Privacy Audit Toggle */}
-          <div className="flex items-center gap-2 p-1 bg-slate-950 rounded-lg border border-slate-800 self-start md:self-auto">
+          <div className="flex items-center gap-2 p-1 bg-slate-100 dark:bg-slate-950 rounded-lg border border-slate-200 dark:border-slate-800 self-start md:self-auto">
             <button
               onClick={() => setViewMode('client')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                 viewMode === 'client'
                   ? 'bg-indigo-600 text-white shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
               }`}
             >
               <Eye className="w-3.5 h-3.5" />
@@ -146,8 +146,8 @@ ${conditions}
               onClick={() => setViewMode('internal')}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                 viewMode === 'internal'
-                  ? 'bg-slate-800 text-indigo-300 shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-white dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 shadow-sm border border-slate-200 dark:border-transparent'
+                  : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
               }`}
             >
               <Lock className="w-3.5 h-3.5" />
@@ -158,13 +158,13 @@ ${conditions}
       </div>
 
       {/* Action Toolbar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 p-4 bg-slate-900/90 border border-slate-800 rounded-xl shadow-sm">
+      <div className="flex flex-wrap items-center justify-between gap-3 p-4 bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm transition-colors">
         <div className="flex items-center gap-2 text-xs">
-          <span className="font-semibold text-slate-300">Approval State:</span>
+          <span className="font-semibold text-slate-700 dark:text-slate-300">Approval State:</span>
           <select
             value={activeChange.status}
             onChange={(e) => updateActiveChange({ status: e.target.value as 'draft' | 'pending_approval' | 'approved' | 'rejected' | 'deferred' })}
-            className="px-2.5 py-1 bg-slate-950 border border-slate-800 rounded text-slate-200 font-medium text-xs focus:outline-none focus:border-indigo-500"
+            className="px-2.5 py-1 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded text-slate-900 dark:text-slate-200 font-medium text-xs focus:outline-none focus:border-indigo-500"
           >
             <option value="draft">Draft</option>
             <option value="pending_approval">Pending Approval</option>
@@ -178,9 +178,9 @@ ${conditions}
           {/* Copy Markdown */}
           <button
             onClick={handleCopyMarkdown}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-750 text-slate-200 text-xs font-medium transition-colors border border-slate-700"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-750 text-slate-800 dark:text-slate-200 text-xs font-medium transition-colors border border-slate-300 dark:border-slate-700"
           >
-            {copiedMarkdown ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+            {copiedMarkdown ? <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
             <span>{copiedMarkdown ? 'Copied' : 'Copy Email / Markdown'}</span>
           </button>
 
@@ -205,21 +205,21 @@ ${conditions}
         {/* Left Column (4 cols): Conditions, Signatory, and Privacy Assurance */}
         <div className="lg:col-span-4 space-y-4">
           {/* Signatory Info Card */}
-          <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-4 shadow-sm space-y-3">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-800/80">
-              <h3 className="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center gap-2">
-                <PenTool className="w-3.5 h-3.5 text-indigo-400" />
+          <div className="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm space-y-3 transition-colors">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800/80">
+              <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-2">
+                <PenTool className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
                 Counter-Signatory Information
               </h3>
               {activeChange.status === 'approved' ? (
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 flex items-center gap-1">
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-500/20 flex items-center gap-1">
                   <Check className="w-3 h-3" /> Signed
                 </span>
               ) : null}
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">
+              <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1">
                 Client Signer Name:
               </label>
               <input
@@ -227,12 +227,12 @@ ${conditions}
                 value={activeChange.clientSignerName || ''}
                 onChange={(e) => updateActiveChange({ clientSignerName: e.target.value })}
                 placeholder="e.g., Elena Rostova"
-                className="w-full px-3 py-1.5 bg-slate-950 border border-slate-800 rounded text-xs text-slate-200 focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1">
+              <label className="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1">
                 Client Signer Title:
               </label>
               <input
@@ -240,7 +240,7 @@ ${conditions}
                 value={activeChange.clientSignerTitle || ''}
                 onChange={(e) => updateActiveChange({ clientSignerTitle: e.target.value })}
                 placeholder="e.g., VP of Brand & Digital Experience"
-                className="w-full px-3 py-1.5 bg-slate-950 border border-slate-800 rounded text-xs text-slate-200 focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
               />
             </div>
 
@@ -254,7 +254,7 @@ ${conditions}
                 });
                 showToast(`Scope Brief marked as Authorized & Signed by ${name}!`, 'success');
               }}
-              className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-300 text-xs font-semibold transition-colors"
+              className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-600/20 dark:hover:bg-emerald-600/30 border border-emerald-300 dark:border-emerald-500/30 text-emerald-800 dark:text-emerald-300 text-xs font-semibold transition-colors"
             >
               <Check className="w-3.5 h-3.5" />
               <span>Simulate Client Counter-Signature</span>
@@ -262,9 +262,9 @@ ${conditions}
           </div>
 
           {/* Delivery Conditions Editor */}
-          <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-4 shadow-sm space-y-3">
-            <h3 className="text-xs font-semibold text-slate-300 uppercase tracking-wider flex items-center gap-2 pb-2 border-b border-slate-800/80">
-              <FileCheck2 className="w-3.5 h-3.5 text-indigo-400" />
+          <div className="bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm space-y-3 transition-colors">
+            <h3 className="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800/80">
+              <FileCheck2 className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
               Delivery Conditions & Acceptance
             </h3>
 
@@ -272,12 +272,12 @@ ${conditions}
               {(activeChange.deliveryConditions || []).map((cond, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start justify-between gap-2 p-2 rounded bg-slate-950 border border-slate-850 text-xs text-slate-300 group"
+                  className="flex items-start justify-between gap-2 p-2 rounded bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 text-xs text-slate-800 dark:text-slate-300 group"
                 >
                   <span className="leading-tight">• {cond}</span>
                   <button
                     onClick={() => handleRemoveCondition(idx)}
-                    className="opacity-0 group-hover:opacity-100 text-slate-500 hover:text-rose-400 transition-opacity"
+                    className="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-rose-500 transition-opacity"
                     title="Remove condition"
                   >
                     <Trash2 className="w-3 h-3" />
@@ -293,11 +293,11 @@ ${conditions}
                 onChange={(e) => setNewCondition(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleAddCondition()}
                 placeholder="Add condition or acceptance criteria..."
-                className="flex-1 px-2.5 py-1.5 bg-slate-950 border border-slate-800 rounded text-xs text-slate-200 focus:outline-none focus:border-indigo-500"
+                className="flex-1 px-2.5 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded text-xs text-slate-900 dark:text-slate-200 focus:outline-none focus:border-indigo-500"
               />
               <button
                 onClick={handleAddCondition}
-                className="px-2.5 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium"
+                className="px-2.5 py-1.5 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-medium"
               >
                 <Plus className="w-3.5 h-3.5" />
               </button>
@@ -305,22 +305,22 @@ ${conditions}
           </div>
 
           {/* Privacy Audit Checklist */}
-          <div className="bg-emerald-950/20 border border-emerald-500/30 rounded-xl p-4 shadow-sm space-y-2 text-xs">
-            <div className="flex items-center gap-2 font-semibold text-emerald-300">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+          <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-300 dark:border-emerald-500/30 rounded-xl p-4 shadow-sm space-y-2 text-xs transition-colors">
+            <div className="flex items-center gap-2 font-semibold text-emerald-800 dark:text-emerald-300">
+              <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               <span>Zero-Leak Privacy Separation Verified</span>
             </div>
-            <ul className="space-y-1 text-slate-400 text-[11px] leading-relaxed">
+            <ul className="space-y-1 text-slate-600 dark:text-slate-400 text-[11px] leading-relaxed">
               <li className="flex items-center gap-1.5">
-                <Check className="w-3 h-3 text-emerald-400" />
+                <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
                 <span>Internal hours ({activeChange.laborLines?.reduce((s, l) => s + (l.hours || 0), 0) || 0} hrs) are hidden</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3 h-3 text-emerald-400" />
+                <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
                 <span>Loaded hourly rates ($85–$95/hr) are hidden</span>
               </li>
               <li className="flex items-center gap-1.5">
-                <Check className="w-3 h-3 text-emerald-400" />
+                <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
                 <span>Agency target margin numbers ({formatPercent(activeProject.targetMargin || 0.35)}) are hidden</span>
               </li>
             </ul>
@@ -328,17 +328,17 @@ ${conditions}
 
           {/* Demo Mode Watermark Notice */}
           {!license.isLicensed && (
-            <div className="p-3.5 rounded-xl bg-amber-950/20 border border-amber-500/30 text-xs space-y-2">
-              <div className="flex items-center gap-2 text-amber-300 font-semibold">
-                <Sparkles className="w-4 h-4 text-amber-400" />
+            <div className="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-300 dark:border-amber-500/30 text-xs space-y-2 transition-colors">
+              <div className="flex items-center gap-2 text-amber-800 dark:text-amber-300 font-semibold">
+                <Sparkles className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                 <span>Watermark Active in Demo Mode</span>
               </div>
-              <p className="text-[11px] text-amber-200/80 leading-relaxed">
+              <p className="text-[11px] text-amber-900/80 dark:text-amber-200/80 leading-relaxed">
                 The brief preview displays the <code>SCOPELEDGER DEMO</code> watermark. Activate an Individual or Agency license to export crisp, clean unwatermarked PDFs.
               </p>
               <button
                 onClick={() => openLicenseModal('Unlock clean, unwatermarked Scope Change Brief PDF exports.')}
-                className="w-full py-1.5 px-3 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-200 text-xs font-semibold transition-colors"
+                className="w-full py-1.5 px-3 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-900 dark:text-amber-200 text-xs font-semibold transition-colors"
               >
                 Activate Studio License
               </button>
@@ -360,10 +360,10 @@ ${conditions}
       </div>
 
       {/* Navigation Footer */}
-      <div className="flex items-center justify-between pt-4 border-t border-slate-800/80">
+      <div className="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800/80">
         <button
           onClick={prevStep}
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs sm:text-sm font-medium transition-colors border border-slate-800"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs sm:text-sm font-medium transition-colors border border-slate-200 dark:border-slate-800"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Offer Matrix (Step C)</span>

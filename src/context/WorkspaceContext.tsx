@@ -7,6 +7,7 @@ import { calculateFinancialMetrics } from '../utils/calculations';
 import { getTodayDateString, getDaysFromToday } from '../utils/formatters';
 
 export type TraceStep = 'T' | 'R' | 'A' | 'C' | 'E';
+export type AppTheme = 'dark' | 'light';
 
 interface Toast {
   id: string;
@@ -21,6 +22,7 @@ interface WorkspaceContextType {
   settings: WorkspaceSettings;
   license: LicenseState;
   activeStep: TraceStep;
+  theme: AppTheme;
   calculations: CalculationResults;
   isLicenseModalOpen: boolean;
   licenseModalReason: string;
@@ -29,6 +31,10 @@ interface WorkspaceContextType {
   isSettingsModalOpen: boolean;
   isShortcutsModalOpen: boolean;
   toasts: Toast[];
+  
+  // Theme
+  toggleTheme: () => void;
+  setTheme: (theme: AppTheme) => void;
   
   // Navigation
   setActiveStep: (step: TraceStep) => void;
@@ -74,6 +80,7 @@ const STORAGE_KEY_PROJECTS = 'scopeledger_projects_v1';
 const STORAGE_KEY_SETTINGS = 'scopeledger_settings_v1';
 const STORAGE_KEY_LICENSE = 'scopeledger_license_v1';
 const STORAGE_KEY_ACTIVE_PROJECT = 'scopeledger_active_project_id_v1';
+const STORAGE_KEY_THEME = 'scopeledger_theme_v1';
 
 const WorkspaceContext = createContext<WorkspaceContextType | null>(null);
 
@@ -83,6 +90,7 @@ export const WorkspaceProvider: React.FC<{ children: ReactNode }> = ({ children 
   const [settings, setSettings] = useState<WorkspaceSettings>(INITIAL_WORKSPACE_SETTINGS);
   const [license, setLicense] = useState<LicenseState>(INITIAL_LICENSE_STATE);
   const [activeStep, setActiveStep] = useState<TraceStep>('T');
+  const [theme, setThemeState] = useState<AppTheme>('dark');
   
   // Modals
   const [isLicenseModalOpen, setIsLicenseModalOpen] = useState(false);
@@ -115,6 +123,7 @@ export const WorkspaceProvider: React.FC<{ children: ReactNode }> = ({ children 
       const storedSettings = localStorage.getItem(STORAGE_KEY_SETTINGS);
       const storedLicense = localStorage.getItem(STORAGE_KEY_LICENSE);
       const storedActiveId = localStorage.getItem(STORAGE_KEY_ACTIVE_PROJECT);
+      const storedTheme = localStorage.getItem(STORAGE_KEY_THEME) as AppTheme | null;
 
       if (storedProjects) {
         const parsed = JSON.parse(storedProjects);
@@ -131,12 +140,43 @@ export const WorkspaceProvider: React.FC<{ children: ReactNode }> = ({ children 
       if (storedActiveId) {
         setActiveProjectId(storedActiveId);
       }
+      if (storedTheme === 'dark' || storedTheme === 'light') {
+        setThemeState(storedTheme);
+        if (storedTheme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } else {
+        // Default to dark mode
+        document.documentElement.classList.add('dark');
+      }
     } catch (err) {
       console.error('Failed to load from localStorage', err);
     } finally {
       setIsLoaded(true);
     }
   }, []);
+
+  const setTheme = (newTheme: AppTheme) => {
+    setThemeState(newTheme);
+    try {
+      localStorage.setItem(STORAGE_KEY_THEME, newTheme);
+      if (newTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } catch (err) {
+      console.error('Failed to save theme', err);
+    }
+  };
+
+  const toggleTheme = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+    showToast(`Switched to ${nextTheme === 'dark' ? 'Dark' : 'White / Light'} Mode`, 'info');
+  };
 
   // Save to localStorage whenever state changes
   useEffect(() => {
@@ -579,6 +619,7 @@ export const WorkspaceProvider: React.FC<{ children: ReactNode }> = ({ children 
         settings,
         license,
         activeStep,
+        theme,
         calculations,
         isLicenseModalOpen,
         licenseModalReason,
@@ -587,6 +628,8 @@ export const WorkspaceProvider: React.FC<{ children: ReactNode }> = ({ children 
         isSettingsModalOpen,
         isShortcutsModalOpen,
         toasts,
+        toggleTheme,
+        setTheme,
         setActiveStep,
         nextStep,
         prevStep,
